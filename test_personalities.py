@@ -5,6 +5,7 @@ Tests each personality with sample golf scenarios
 
 import os
 import sys
+import json
 
 try:
     import anthropic
@@ -13,8 +14,15 @@ except ImportError:
     print("Run: pip install anthropic")
     sys.exit(1)
 
-# Import personalities from main script
-from gspro_ai_caddy import CADDY_PERSONALITIES
+# Load personalities from JSON file
+def load_personalities():
+    """Load personalities from personalities.json"""
+    json_path = os.path.join(os.path.dirname(__file__), 'personalities.json')
+    with open(json_path, 'r') as f:
+        data = json.load(f)
+    return data['personalities']
+
+CADDY_PERSONALITIES = load_personalities()
 
 
 def test_personality(client, personality_name, scenario):
@@ -25,12 +33,12 @@ def test_personality(client, personality_name, scenario):
         message = client.messages.create(
             model="claude-sonnet-4-20250514",
             max_tokens=150,
-            system=personality['system_prompt'],
+            system=personality['prompt'],
             messages=[
                 {"role": "user", "content": f"Current situation: {scenario}\n\nGenerate a short caddy comment (1-2 sentences max) about this shot. Be in character."}
             ]
         )
-        
+
         return message.content[0].text.strip()
     except Exception as e:
         return f"Error: {e}"
