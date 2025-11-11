@@ -11,6 +11,13 @@ import time
 import os
 from datetime import datetime
 
+# Configure Tesseract path for Windows
+# If Tesseract is installed in the default location, set the path
+if os.name == 'nt':  # Windows
+    tesseract_path = r'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
+    if os.path.exists(tesseract_path):
+        pytesseract.pytesseract.tesseract_cmd = tesseract_path
+
 class GSProVoiceCaddy:
     def __init__(self, debug_mode=False):
         """Initialize the voice caddy"""

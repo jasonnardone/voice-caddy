@@ -13,6 +13,13 @@ import json
 from datetime import datetime
 from anthropic import Anthropic
 
+# Configure Tesseract path for Windows
+# If Tesseract is installed in the default location, set the path
+if os.name == 'nt':  # Windows
+    tesseract_path = r'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
+    if os.path.exists(tesseract_path):
+        pytesseract.pytesseract.tesseract_cmd = tesseract_path
+
 class GSProAIAnnouncer:
     def __init__(self, personality_mode="normal", debug_mode=False, api_key=None):
         """Initialize the AI announcer"""
