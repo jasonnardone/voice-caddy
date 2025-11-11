@@ -94,7 +94,7 @@ class TriggerBasedAnnouncer:
                     return personality['prompt']
             except Exception as e:
                 if self.debug_mode:
-                    print(f"⚠️  Could not load personalities.json: {e}")
+                    print(f" Could not load personalities.json: {e}")
         
         return """You are a professional golf announcer providing live commentary. 
 Keep commentary concise (1-2 sentences max)."""
@@ -116,7 +116,7 @@ Keep commentary concise (1-2 sentences max)."""
             self.stats['screenshots_taken'] += 1
             return screenshot
         except Exception as e:
-            print(f"❌ Error capturing screen: {e}")
+            print(f"Error capturing screen: {e}")
             return None
     
     def calculate_image_hash(self, image):
@@ -194,7 +194,7 @@ Keep commentary concise (1-2 sentences max)."""
                 print("="*50 + "\n")
             return text
         except Exception as e:
-            print(f"❌ OCR error: {e}")
+            print(f"OCR error: {e}")
             return ""
     
     def parse_game_state(self, text):
