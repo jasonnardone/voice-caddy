@@ -1,0 +1,75 @@
+{
+  "trigger_settings": {
+    "change_threshold": 5.0,
+    "check_interval": 1.0,
+    "description": "Percentage of screen that must change to trigger (lower = more sensitive)"
+  },
+  
+  "regions_of_interest": {
+    "enabled": false,
+    "description": "Monitor specific screen regions instead of full screen for better efficiency",
+    "regions": {
+      "distance_display": {
+        "enabled": false,
+        "bbox": [800, 100, 1100, 200],
+        "description": "Distance to pin display area"
+      },
+      "hole_info": {
+        "enabled": false,
+        "bbox": [50, 50, 300, 150],
+        "description": "Hole number and par information"
+      },
+      "wind_indicator": {
+        "enabled": false,
+        "bbox": [50, 150, 200, 250],
+        "description": "Wind speed and direction"
+      },
+      "player_panel": {
+        "enabled": false,
+        "bbox": [1600, 50, 1900, 400],
+        "description": "Player information panel"
+      }
+    }
+  },
+  
+  "advanced_triggers": {
+    "description": "Advanced trigger conditions",
+    
+    "distance_triggers": {
+      "enabled": true,
+      "min_change": 20,
+      "description": "Only announce distance changes > 20 yards"
+    },
+    
+    "wind_triggers": {
+      "enabled": true,
+      "min_wind_mph": 10,
+      "description": "Only announce wind >= 10 mph"
+    },
+    
+    "hole_change": {
+      "enabled": true,
+      "always_announce": true,
+      "description": "Always announce when hole changes"
+    },
+    
+    "shot_detection": {
+      "enabled": true,
+      "distance_threshold": 20,
+      "description": "Detect shots by distance changes > threshold"
+    }
+  },
+  
+  "performance": {
+    "screenshot_quality": "fast",
+    "ocr_preprocessing": true,
+    "cache_personality": true,
+    "description": "Performance optimization settings"
+  },
+  
+  "cost_control": {
+    "max_api_calls_per_round": 50,
+    "warning_at_calls": 40,
+    "description": "Prevent excessive API usage"
+  }
+}
